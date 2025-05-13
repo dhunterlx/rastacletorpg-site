@@ -1,1029 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enciclopédia de Noctarion - Sombra e Chama</title>
+    <title>Rastacleto RPG - Campanhas, sistemas e aventuras épicas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .hero-pattern {
-            background-image: url('https://images.unsplash.com/photo-1605106702734-205df224ecce?q=80&w=1470&auto=format&fit=crop');
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary: #4a044e;
+            --secondary: #2d3748;
+            --accent: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title-font {
+            font-family: 'MedievalSharp', cursive;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5e0b63;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
             background-size: cover;
-            background-position: center;
-            background-blend-mode: multiply;
         }
         
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        .feature-card {
+            transition: all 0.3s ease;
         }
         
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-        
-        .character-sheet {
-            background-image: url('https://images.unsplash.com/photo-1511207538754-e8555f2bc187?q=80&w=1374&auto=format&fit=crop');
-            background-size: cover;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-serif">
-    <!-- Header -->
-    <header class="hero-pattern bg-gray-800 py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 text-amber-400">Enciclopédia de Noctarion</h1>
-            <p class="text-xl md:text-2xl mb-8">Seu guia completo para o mundo de Sombra e Chama</p>
-            <div class="flex justify-center space-x-4">
-                <button class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
-                    Explorar Mundo
+<body class="flex flex-col min-h-screen">
+    <!-- Header/Navigation -->
+    <header class="hero-bg text-white">
+        <div class="container mx-auto px-4 py-6">
+            <nav class="flex justify-between items-center">
+                <div>
+                    <h1 class="title-font text-3xl md:text-4xl font-bold">Rastacleto RPG</h1>
+                    <p class="text-sm md:text-base opacity-80">Campanhas, sistemas e aventuras épicas</p>
+                </div>
+                <button class="md:hidden text-2xl" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
                 </button>
-                <button class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
-                    Criar Personagem
-                </button>
+                <div class="hidden md:flex space-x-6" id="desktop-menu">
+                    <a href="https://www.rastacletorpg.space/join" class="hover:text-pink-300 transition">Jogar Agora</a>
+                    <a href="campanhas.html" class="hover:text-pink-300 transition">Campanhas</a>
+                    <a href="sistema.html" class="hover:text-pink-300 transition">Sistema</a>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu (hidden by default) -->
+            <div class="hidden py-4 md:hidden" id="mobile-menu">
+                <a href="https://www.rastacletorpg.space/join" class="block py-2 hover:text-pink-300 transition">Jogar Agora</a>
+                <a href="campanhas.html" class="block py-2 hover:text-pink-300 transition">Campanhas</a>
+                <a href="sistema.html" class="block py-2 hover:text-pink-300 transition">Sistema</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Navigation -->
-    <nav class="bg-gray-800 sticky top-0 z-10 shadow-lg">
+    <!-- Hero Section -->
+    <section class="hero-bg text-white flex-grow flex items-center py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="title-font text-4xl md:text-6xl font-bold mb-4">Bem-vindo ao Rastacleto RPG</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Explore mundos fantásticos, crie personagens memoráveis e viva aventuras inesquecíveis com nosso sistema exclusivo.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="https://www.rastacletorpg.space/join" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-dice-d20 mr-2"></i> Jogar Agora
+                </a>
+                <a href="campanhas.html" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-scroll mr-2"></i> Ver Campanhas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="flex overflow-x-auto scrollbar-hide py-2">
-                <button class="tab-btn active px-4 py-3 whitespace-nowrap text-amber-400 border-b-2 border-amber-400" data-tab="overview">
-                    <i class="fas fa-globe mr-2"></i>Visão Geral
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="mythology">
-                    <i class="fas fa-book-dead mr-2"></i>Mitologia
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="maps">
-                    <i class="fas fa-map mr-2"></i>Mapas
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="adventures">
-                    <i class="fas fa-dragon mr-2"></i>Aventuras
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="classes">
-                    <i class="fas fa-helmet-battle mr-2"></i>Classes
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="kingdoms">
-                    <i class="fas fa-crown mr-2"></i>Reinos
-                </button>
-                <button class="tab-btn px-4 py-3 whitespace-nowrap hover:text-amber-300" data-tab="character">
-                    <i class="fas fa-user-plus mr-2"></i>Criador de Personagem
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Overview Tab -->
-        <div id="overview" class="tab-content active">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Bem-vindo a Noctarion</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <p class="mb-4 text-lg">Noctarion é um mundo de fantasia heroica criado para o sistema Sombra e Chama, onde aventureiros enfrentam desafios épicos, exploram reinos perdidos e lutam contra as forças da Tormenta.</p>
-                    <p class="mb-4">Esta enciclopédia serve como seu guia completo para o mundo de Sombra e Chama, contendo informações sobre:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Os deuses e a mitologia de Noctarion</li>
-                        <li>Mapas detalhados dos continentes e reinos</li>
-                        <li>Aventuras prontas e hooks para suas campanhas</li>
-                        <li>Todas as classes de aventureiros disponíveis</li>
-                        <li>Os principais reinos e suas culturas</li>
-                    </ul>
-                    <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-amber-500">
-                        <h3 class="text-xl font-bold mb-2 text-amber-400">Dica do Mestre</h3>
-                        <p>Use o menu acima para navegar entre as seções ou comece criando um novo personagem!</p>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2b?q=80&w=1470&auto=format&fit=crop" alt="Mundo de Noctarion" class="w-full h-auto rounded-lg shadow-lg">
-                    <div class="mt-4 grid grid-cols-3 gap-2">
-                        <img src="https://images.unsplash.com/photo-1560869713-8174784cb48f?q=80&w=1470&auto=format&fit=crop" alt="Tormenta" class="w-full h-24 object-cover rounded">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1448&auto=format&fit=crop" alt="Deuses" class="w-full h-24 object-cover rounded">
-                        <img src="https://images.unsplash.com/photo-1541410965313-d53b3ac16c06?q=80&w=1374&auto=format&fit=crop" alt="Aventureiros" class="w-full h-24 object-cover rounded">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mythology Tab -->
-        <div id="mythology" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Mitologia de Noctarion</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all">
-                    <div class="text-4xl text-amber-400 mb-3">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Os Deuses Maiores</h3>
-                    <p class="mb-4">Os poderosos deuses que governam os aspectos fundamentais da existência em Noctarion.</p>
-                    <button class="text-amber-400 hover:text-amber-300">Explorar Panteão →</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all">
-                    <div class="text-4xl text-amber-400 mb-3">
-                        <i class="fas fa-cloud-meatball"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">A Tormenta</h3>
-                    <p class="mb-4">A entidade cósmica que corrompe tudo o que toca, a grande ameaça de Noctarion.</p>
-                    <button class="text-amber-400 hover:text-amber-300">Saber mais →</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all">
-                    <div class="text-4xl text-amber-400 mb-3">
-                        <i class="fas fa-scroll"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Lendas e Profecias</h3>
-                    <p class="mb-4">As histórias antigas que moldaram o mundo e as profecias que ainda podem se cumprir.</p>
-                    <button class="text-amber-400 hover:text-amber-300">Ler lendas →</button>
-                </div>
-            </div>
+            <h2 class="title-font text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Descubra o Rastacleto RPG</h2>
             
-            <div class="mt-8">
-                <h3 class="text-2xl font-bold mb-4">Os Panteões</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full bg-gray-800 rounded-lg overflow-hidden">
-                        <thead class="bg-gray-700">
-                            <tr>
-                                <th class="py-3 px-4 text-left">Deus</th>
-                                <th class="py-3 px-4 text-left">Domínio</th>
-                                <th class="py-3 px-4 text-left">Alinhamento</th>
-                                <th class="py-3 px-4 text-left">Símbolo</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-700">
-                            <tr>
-                                <td class="py-3 px-4">Tanna-Toh</td>
-                                <td class="py-3 px-4">Conhecimento, Magia</td>
-                                <td class="py-3 px-4">Neutro</td>
-                                <td class="py-3 px-4">Livro Aberto</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4">Khalmyr</td>
-                                <td class="py-3 px-4">Justiça, Honra</td>
-                                <td class="py-3 px-4">Leal e Bom</td>
-                                <td class="py-3 px-4">Espada na Pedra</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4">Megallan</td>
-                                <td class="py-3 px-4">Morte, Inverno</td>
-                                <td class="py-3 px-4">Neutro</td>
-                                <td class="py-3 px-4">Caveira Gélida</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4">Aharadak</td>
-                                <td class="py-3 px-4">Tormenta, Caos</td>
-                                <td class="py-3 px-4">Caótico e Mau</td>
-                                <td class="py-3 px-4">Olho Vermelho</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
+                    <div class="text-5xl text-purple-700 mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-semibold mb-3">Jogar Agora</h3>
+                    <p class="text-gray-600 mb-4">Entre em nossa comunidade e comece sua jornada imediatamente. Sessões regulares com mestres experientes.</p>
+                    <a href="https://www.rastacletorpg.space/join" class="inline-block bg-purple-100 text-purple-700 font-medium py-2 px-6 rounded-full hover:bg-purple-200 transition">Participar</a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
+                    <div class="text-5xl text-red-600 mb-4">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-semibold mb-3">Campanhas</h3>
+                    <p class="text-gray-600 mb-4">Junte-se à emocionante campanha "Duelo de Dragões" ou aguarde nossas próximas aventuras épicas.</p>
+                    <a href="campanhas.html" class="inline-block bg-red-100 text-red-600 font-medium py-2 px-6 rounded-full hover:bg-red-200 transition">Explorar</a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
+                    <div class="text-5xl text-blue-600 mb-4">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-semibold mb-3">Sistema Próprio</h3>
+                    <p class="text-gray-600 mb-4">Conheça nosso sistema de RPG autoral, projetado para narrativas ricas e mecânicas intuitivas.</p>
+                    <a href="sistema.html" class="inline-block bg-blue-100 text-blue-600 font-medium py-2 px-6 rounded-full hover:bg-blue-200 transition">Aprender</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Maps Tab -->
-        <div id="maps" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Mapas de Noctarion</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <div class="bg-gray-800 p-4 rounded-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1470&auto=format&fit=crop" alt="Mapa de Noctarion" class="w-full h-auto rounded">
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1474&auto=format&fit=crop" alt="Reino de Deheon" class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80">
-                        <img src="https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=1498&auto=format&fit=crop" alt="Floresta de Moreania" class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80">
-                        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1476&auto=format&fit=crop" alt="Deserto de Al'far" class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80">
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Regiões de Noctarion</h3>
-                    <div class="space-y-4">
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-bold text-amber-400 mb-2">Reino de Deheon</h4>
-                            <p class="text-sm">O maior reino humano, governado pela nobreza e paladinos de Khalmyr.</p>
-                        </div>
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-bold text-amber-400 mb-2">Floresta de Moreania</h4>
-                            <p class="text-sm">O lar dos elfos e criaturas mágicas, protegida pelos druidas.</p>
-                        </div>
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-bold text-amber-400 mb-2">Deserto de Al'far</h4>
-                            <p class="text-sm">Terra dos povos nômades e ruínas de civilizações antigas.</p>
-                        </div>
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-bold text-amber-400 mb-2">Montanhas da Tormenta</h4>
-                            <p class="text-sm">Onde a Tormenta se manifesta mais fortemente, repleta de perigos.</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Coming Soon Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="title-font text-3xl md:text-4xl font-bold mb-8 text-gray-800">Em Breve no Rastacleto RPG</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                Estamos trabalhando em novas funcionalidades para enriquecer sua experiência, incluindo um bestiário completo, galeria de personagens e um sistema de itens mágicos.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-white text-gray-800 font-medium py-2 px-6 rounded-full border border-gray-300">Bestiário</span>
+                <span class="bg-white text-gray-800 font-medium py-2 px-6 rounded-full border border-gray-300">Galeria de NPCs</span>
+                <span class="bg-white text-gray-800 font-medium py-2 px-6 rounded-full border border-gray-300">Itens Mágicos</span>
+                <span class="bg-white text-gray-800 font-medium py-2 px-6 rounded-full border border-gray-300">Mapas Interativos</span>
             </div>
         </div>
-
-        <!-- Adventures Tab -->
-        <div id="adventures" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Aventuras</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1470&auto=format&fit=crop" alt="A Jornada do Herói" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <span class="inline-block px-3 py-1 bg-amber-600 text-xs rounded-full mb-2">Nível 1-3</span>
-                        <h3 class="text-xl font-bold mb-2">A Jornada do Herói</h3>
-                        <p class="text-sm mb-4">Uma aventura introdutória para novos aventureiros enfrentando bandidos e criaturas da Tormenta.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs">2-4 sessões</span>
-                            <button class="text-amber-400 hover:text-amber-300 text-sm font-semibold">Ver detalhes →</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?q=80&w=1470&auto=format&fit=crop" alt="O Templo Esquecido" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <span class="inline-block px-3 py-1 bg-amber-600 text-xs rounded-full mb-2">Nível 4-6</span>
-                        <h3 class="text-xl font-bold mb-2">O Templo Esquecido</h3>
-                        <p class="text-sm mb-4">Explore ruínas antigas em busca de um artefato sagrado antes que os cultistas da Tormenta o encontrem.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs">4-6 sessões</span>
-                            <button class="text-amber-400 hover:text-amber-300 text-sm font-semibold">Ver detalhes →</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1518562180175-0c3b7d7b33e0?q=80&w=1470&auto=format&fit=crop" alt="A Ascensão da Tormenta" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <span class="inline-block px-3 py-1 bg-amber-600 text-xs rounded-full mb-2">Nível 7-10</span>
-                        <h3 class="text-xl font-bold mb-2">A Ascensão da Tormenta</h3>
-                        <p class="text-sm mb-4">Uma campanha épica para deter o avanço da Tormenta que ameaça consumir todo o reino.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs">10+ sessões</span>
-                            <button class="text-amber-400 hover:text-amber-300 text-sm font-semibold">Ver detalhes →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 bg-gray-800 p-6 rounded-lg">
-                <h3 class="text-2xl font-bold mb-4">Crie Sua Própria Aventura</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="text-lg font-semibold mb-2 text-amber-400">Gerador de Enredos</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm mb-1">Tipo de Aventura</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2">
-                                    <option>Exploração</option>
-                                    <option>Investigação</option>
-                                    <option>Combate</option>
-                                    <option>Social</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Localização</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2">
-                                    <option>Cidade</option>
-                                    <option>Floresta</option>
-                                    <option>Dungeon</option>
-                                    <option>Deserto</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Vilão Principal</label>
-                                    <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2">
-                                    <option>Cultista da Tormenta</option>
-                                    <option>Dragão</option>
-                                    <option>Nobre Corrupto</option>
-                                    <option>Criatura Mística</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-2 text-amber-400">Aventura Gerada</h4>
-                        <div class="bg-gray-700 p-4 rounded h-full">
-                            <h5 class="font-bold mb-1">O Segredo da Torre Maldita</h5>
-                            <p class="text-sm">Os aventureiros são contratados para investigar desaparecimentos em uma vila próxima a uma antiga torre abandonada. O que parece ser obra de bandidos revela-se um culto à Tormenta realizando rituais profanos nas masmorras abaixo da torre.</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-gray-600 text-xs px-2 py-1 rounded mr-2">Nível 3-5</span>
-                                <span class="inline-block bg-gray-600 text-xs px-2 py-1 rounded">4-6 horas</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="mt-4 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded font-semibold">
-                    Gerar Nova Aventura
-                </button>
-            </div>
-        </div>
-
-        <!-- Classes Tab -->
-        <div id="classes" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Classes de Aventureiros</h2>
-            <div class="mb-6">
-                <div class="relative">
-                    <input type="text" placeholder="Buscar classe..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 pl-10 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                    <i class="fas fa-search absolute left-3 top-3.5 text-gray-500"></i>
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-shield-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Guerreiro</h3>
-                                <p class="text-sm text-gray-400">Mestre das armas e da estratégia militar</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d10</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Força</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-green-400">Fácil</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-hat-wizard text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Arcanista</h3>
-                                <p class="text-sm text-gray-400">Manipulador das forças mágicas do universo</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d6</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Inteligência</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-yellow-400">Média</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-pray text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Clérigo</h3>
-                                <p class="text-sm text-gray-400">Canalizador do poder divino</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d8</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Sabedoria</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-yellow-400">Média</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-user-secret text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Ladino</h3>
-                                <p class="text-sm text-gray-400">Especialista em furtividade e truques sujos</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d8</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Destreza</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-green-400">Fácil</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-leaf text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Druida</h3>
-                                <p class="text-sm text-gray-400">Guardião da natureza e suas forças primais</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d8</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Sabedoria</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-red-400">Difícil</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all group">
-                    <div class="p-6">
-                        <div class="flex items-start">
-                            <div class="bg-amber-600 text-white p-3 rounded-lg mr-4 group-hover:bg-amber-700 transition-all">
-                                <i class="fas fa-music text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">Bardo</h3>
-                                <p class="text-sm text-gray-400">Artista e inspirador com magia nas palavras</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-700">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Dado de Vida:</span>
-                                <span class="font-semibold">d6</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span>Atributo Primário:</span>
-                                <span class="font-semibold">Carisma</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span>Dificuldade:</span>
-                                <span class="text-yellow-400">Média</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8">
-                <h3 class="text-2xl font-bold mb-4">Comparação de Classes</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full bg-gray-800 rounded-lg overflow-hidden">
-                        <thead class="bg-gray-700">
-                            <tr>
-                                <th class="py-3 px-4 text-left">Classe</th>
-                                <th class="py-3 px-4 text-left">Dado de Vida</th>
-                                <th class="py-3 px-4 text-left">Atributo Primário</th>
-                                <th class="py-3 px-4 text-left">Tipo</th>
-                                <th class="py-3 px-4 text-left">Magia</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-700">
-                            <tr>
-                                <td class="py-3 px-4 font-semibold">Guerreiro</td>
-                                <td class="py-3 px-4">d10</td>
-                                <td class="py-3 px-4">Força</td>
-                                <td class="py-3 px-4">Combate</td>
-                                <td class="py-3 px-4">Não</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4 font-semibold">Arcanista</td>
-                                <td class="py-3 px-4">d6</td>
-                                <td class="py-3 px-4">Inteligência</td>
-                                <td class="py-3 px-4">Magia</td>
-                                <td class="py-3 px-4">Arcana</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4 font-semibold">Clérigo</td>
-                                <td class="py-3 px-4">d8</td>
-                                <td class="py-3 px-4">Sabedoria</td>
-                                <td class="py-3 px-4">Híbrido</td>
-                                <td class="py-3 px-4">Divina</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4 font-semibold">Ladino</td>
-                                <td class="py-3 px-4">d8</td>
-                                <td class="py-3 px-4">Destreza</td>
-                                <td class="py-3 px-4">Habilidoso</td>
-                                <td class="py-3 px-4">Não</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Kingdoms Tab -->
-        <div id="kingdoms" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Reinos de Noctarion</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <div class="bg-gray-800 rounded-lg overflow-hidden mb-6">
-                        <img src="https://images.unsplash.com/photo-1513614478796-188a514ad8f9?q=80&w=1470&auto=format&fit=crop" alt="Reino de Deheon" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Reino de Deheon</h3>
-                            <div class="flex items-center text-sm text-gray-400 mb-3">
-                                <i class="fas fa-user-crown mr-2"></i>
-                                <span>Rei Arlan IV</span>
-                                <i class="fas fa-map-marker-alt mx-4"></i>
-                                <span>Centro de Noctarion</span>
-                            </div>
-                            <p class="mb-4">O maior reino humano, conhecido por suas ordens de cavalaria e leis justas. A capital, Valkaria, abriga o Grande Templo de Khalmyr.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Humanos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Paladinos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Comércio</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1533923156502-be31530547c4?q=80&w=1470&auto=format&fit=crop" alt="Clãs do Norte" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Clãs do Norte</h3>
-                            <div class="flex items-center text-sm text-gray-400 mb-3">
-                                <i class="fas fa-users mr-2"></i>
-                                <span>Conselho de Jarls</span>
-                                <i class="fas fa-map-marker-alt mx-4"></i>
-                                <span>Norte de Noctarion</span>
-                            </div>
-                            <p class="mb-4">Terra de guerreiros ferozes e navegadores destemidos. Os clãs vivem em relativa harmonia, unindo-se apenas contra ameaças externas.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Humanos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Bárbaros</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Pilhagem</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="bg-gray-800 rounded-lg overflow-hidden mb-6">
-                        <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1470&auto=format&fit=crop" alt="Floresta de Moreania" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Floresta de Moreania</h3>
-                            <div class="flex items-center text-sm text-gray-400 mb-3">
-                                <i class="fas fa-tree mr-2"></i>
-                                <span>Rainha Sylvaria</span>
-                                <i class="fas fa-map-marker-alt mx-4"></i>
-                                <span>Oeste de Noctarion</span>
-                            </div>
-                            <p class="mb-4">O reino élfico, escondido nas florestas antigas. Cidades construídas nas copas das árvores e uma profunda conexão com a natureza.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Elfos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Druidas</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Magia</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1476&auto=format&fit=crop" alt="Deserto de Al'far" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Deserto de Al'far</h3>
-                            <div class="flex items-center text-sm text-gray-400 mb-3">
-                                <i class="fas fa-sun mr-2"></i>
-                                <span>Sultão Rashid</span>
-                                <i class="fas fa-map-marker-alt mx-4"></i>
-                                <span>Sul de Noctarion</span>
-                            </div>
-                            <p class="mb-4">Terra de nômades e cidades-estado que controlam o comércio de especiarias e artefatos mágicos. Repleto de ruínas de civilizações antigas.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Humanos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Ladinos</span>
-                                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Comércio</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8">
-                <h3 class="text-2xl font-bold mb-4">Relações Diplomáticas</h3>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-700">
-                                <tr>
-                                    <th class="py-3 px-4 text-left">Reino</th>
-                                    <th class="py-3 px-4 text-left">Deheon</th>
-                                    <th class="py-3 px-4 text-left">Clãs</th>
-                                    <th class="py-3 px-4 text-left">Moreania</th>
-                                    <th class="py-3 px-4 text-left">Al'far</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-700">
-                                <tr>
-                                    <td class="py-3 px-4 font-semibold">Deheon</td>
-                                    <td class="py-3 px-4">—</td>
-                                    <td class="py-3 px-4 text-yellow-400">Tensas</td>
-                                    <td class="py-3 px-4 text-green-400">Aliados</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 px-4 font-semibold">Clãs</td>
-                                    <td class="py-3 px-4 text-yellow-400">Tensas</td>
-                                    <td class="py-3 px-4">—</td>
-                                    <td class="py-3 px-4 text-red-400">Inimigos</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 px-4 font-semibold">Moreania</td>
-                                    <td class="py-3 px-4 text-green-400">Aliados</td>
-                                    <td class="py-3 px-4 text-red-400">Inimigos</td>
-                                    <td class="py-3 px-4">—</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 px-4 font-semibold">Al'far</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                    <td class="py-3 px-4 text-blue-400">Neutras</td>
-                                    <td class="py-3 px-4">—</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Character Creator Tab -->
-        <div id="character" class="tab-content">
-            <h2 class="text-3xl font-bold mb-6 text-amber-400">Criador de Personagem</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Character Form -->
-                <div class="md:col-span-2">
-                    <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                        <h3 class="text-xl font-bold mb-4 text-amber-400">Informações Básicas</h3>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm mb-1">Nome do Personagem</label>
-                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Jogador</label>
-                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Raça</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                                    <option>Humano</option>
-                                    <option>Elfo</option>
-                                    <option>Anão</option>
-                                    <option>Qareen</option>
-                                    <option>Goblin</option>
-                                    <option>Minotauro</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Classe</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                                    <option>Guerreiro</option>
-                                    <option>Arcanista</option>
-                                    <option>Clérigo</option>
-                                    <option>Ladino</option>
-                                    <option>Bárbaro</option>
-                                    <option>Bardo</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Nível</label>
-                                <input type="number" min="1" max="20" value="1" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Divindade</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                                    <option>Nenhuma</option>
-                                    <option>Khalmyr (Justiça)</option>
-                                    <option>Tanna-Toh (Conhecimento)</option>
-                                    <option>Valkaria (Guerra)</option>
-                                    <option>Allihanna (Natureza)</option>
-                                    <option>Aharadak (Tormenta)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                        <h3 class="text-xl font-bold mb-4 text-amber-400">Atributos</h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-sm mb-1">Força</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Destreza</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Constituição</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Inteligência</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Sabedoria</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Carisma</label>
-                                <input type="number" min="1" max="20" value="10" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800 p-6 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4 text-amber-400">Descrição</h3>
-                        <div class="mb-4">
-                            <label class="block text-sm mb-1">História</label>
-                            <textarea rows="4" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label class="block text-sm mb-1">Idade</label>
-                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Altura</label>
-                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Peso</label>
-                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm mb-1">Alinhamento</label>
-                                <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                                    <option>Leal e Bom</option>
-                                    <option>Neutro e Bom</option>
-                                    <option>Caótico e Bom</option>
-                                    <option>Leal e Neutro</option>
-                                    <option>Neutro</option>
-                                    <option>Caótico e Neutro</option>
-                                    <option>Leal e Mau</option>
-                                    <option>Neutro e Mau</option>
-                                    <option>Caótico e Mau</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm mb-1">Características Físicas</label>
-                            <textarea rows="3" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Character Preview -->
-                <div>
-                    <div class="sticky top-24">
-                        <div class="character-sheet bg-gray-800 p-6 rounded-lg shadow-lg">
-                            <div class="text-center mb-6">
-                                <div class="w-24 h-24 bg-gray-700 rounded-full mx-auto mb-3 overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1541410965313-d53b3ac16c06?q=80&w=1374&auto=format&fit=crop" alt="Personagem" class="w-full h-full object-cover">
-                                </div>
-                                <h3 class="text-xl font-bold" id="preview-name">Nome do Personagem</h3>
-                                <p class="text-sm text-gray-400" id="preview-class">Nível 1 Guerreiro Humano</p>
-                            </div>
-                            
-                            <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg mb-4">
-                                <h4 class="font-bold text-amber-400 mb-2">Atributos</h4>
-                                <div class="grid grid-cols-3 gap-2 text-center">
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">FOR</div>
-                                        <div class="font-bold" id="preview-str">10</div>
-                                    </div>
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">DES</div>
-                                        <div class="font-bold" id="preview-dex">10</div>
-                                    </div>
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">CON</div>
-                                        <div class="font-bold" id="preview-con">10</div>
-                                    </div>
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">INT</div>
-                                        <div class="font-bold" id="preview-int">10</div>
-                                    </div>
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">SAB</div>
-                                        <div class="font-bold" id="preview-wis">10</div>
-                                    </div>
-                                    <div class="bg-gray-800 p-2 rounded">
-                                        <div class="text-xs">CAR</div>
-                                        <div class="font-bold" id="preview-cha">10</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg mb-4">
-                                <h4 class="font-bold text-amber-400 mb-2">Informações</h4>
-                                <div class="space-y-2">
-                                    <div>
-                                        <div class="text-xs text-gray-400">Divindade</div>
-                                        <div id="preview-god">Nenhuma</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-gray-400">Alinhamento</div>
-                                        <div id="preview-align">Neutro</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-amber-400 mb-2">Perícias</h4>
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="bg-gray-800 px-2 py-1 rounded-full text-xs">Luta</span>
-                                    <span class="bg-gray-800 px-2 py-1 rounded-full text-xs">Fortitude</span>
-                                    <span class="bg-gray-800 px-2 py-1 rounded-full text-xs">Percepção</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="mt-6 w-full bg-amber-600 hover:bg-amber-700 text-white px-4 py-3 rounded-lg font-semibold transition-all">
-                            Salvar Personagem
-                        </button>
-                        
-                        <button class="mt-3 w-full bg-gray-700 hover:bg-gray-600 text-white px-4 py-3 rounded-lg font-semibold transition-all">
-                            Gerar PDF
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 py-8">
+    <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 text-amber-400">Enciclopédia de Noctarion</h3>
-                    <p class="text-sm">O guia definitivo para o mundo de Sombra e Chama. Explore, crie e compartilhe suas aventuras.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="title-font text-2xl font-bold">Rastacleto RPG</h3>
+                    <p class="text-gray-400">Campanhas, sistemas e aventuras épicas</p>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Links Úteis</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-sm hover:text-amber-400">Sistema Sombra e Chama</a></li>
-                        <li><a href="#" class="text-sm hover:text-amber-400">Fórum da Comunidade</a></li>
-                        <li><a href="#" class="text-sm hover:text-amber-400">Tutoriais para Mestres</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Recursos</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-sm hover:text-amber-400">Gerador de NPCs</a></li>
-                        <li><a href="#" class="text-sm hover:text-amber-400">Tabelas de Tesouros</a></li>
-                        <li><a href="#" class="text-sm hover:text-amber-400">Mapas Customizáveis</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Contato</h3>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i class="fab fa-youtube"></i></a>
-                    </div>
-                    <p class="text-sm">contato@Noctarionrpg.com</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
-                <p>© 2023 Enciclopédia de Noctarion. Sombra e Chama é uma marca registrada da Jambô Editora.</p>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center md:text-left">
+                <p class="text-gray-400">© 2025 Rastacleto RPG. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Tab functionality
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
         
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active', 'text-amber-400', 'border-amber-400'));
-                tabContents.forEach(content => content.classList.remove('active'));
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
                 
-                // Add active class to clicked button
-                button.classList.add('active', 'text-amber-400', 'border-amber-400');
-                
-                // Show corresponding content
-                const tabId = button.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-        
-        // Character creator preview updates
-        const characterNameInput = document.querySelector('input[type="text"]:first-of-type');
-        const classNameSelect = document.querySelector('select:nth-of-type(2)');
-        const levelInput = document.querySelector('input[type="number"]:first-of-type');
-        const godSelect = document.querySelector('select:nth-of-type(3)');
-        const alignSelect = document.querySelector('select:nth-of-type(4)');
-        const strInput = document.querySelector('input[type="number"]:nth-of-type(2)');
-        const dexInput = document.querySelector('input[type="number"]:nth-of-type(3)');
-        const conInput = document.querySelector('input[type="number"]:nth-of-type(4)');
-        const intInput = document.querySelector('input[type="number"]:nth-of-type(5)');
-        const wisInput = document.querySelector('input[type="number"]:nth-of-type(6)');
-        const chaInput = document.querySelector('input[type="number"]:nth-of-type(7)');
-        
-        characterNameInput.addEventListener('input', () => {
-            document.getElementById('preview-name').textContent = characterNameInput.value || 'Nome do Personagem';
-        });
-        
-        classNameSelect.addEventListener('change', () => {
-            const race = document.querySelector('select:nth-of-type(1)').value;
-            const level = levelInput.value;
-            document.getElementById('preview-class').textContent = `Nível ${level} ${classNameSelect.value} ${race}`;
-        });
-        
-        levelInput.addEventListener('change', () => {
-            const race = document.querySelector('select:nth-of-type(1)').value;
-            const className = classNameSelect.value;
-            document.getElementById('preview-class').textContent = `Nível ${levelInput.value} ${className} ${race}`;
-        });
-        
-        godSelect.addEventListener('change', () => {
-            document.getElementById('preview-god').textContent = godSelect.value;
-        });
-        
-        alignSelect.addEventListener('change', () => {
-            document.getElementById('preview-align').textContent = alignSelect.value;
-        });
-        
-        strInput.addEventListener('change', () => {
-            document.getElementById('preview-str').textContent = strInput.value;
-        });
-        
-        dexInput.addEventListener('change', () => {
-            document.getElementById('preview-dex').textContent = dexInput.value;
-        });
-        
-        conInput.addEventListener('change', () => {
-            document.getElementById('preview-con').textContent = conInput.value;
-        });
-        
-        intInput.addEventListener('change', () => {
-            document.getElementById('preview-int').textContent = intInput.value;
-        });
-        
-        wisInput.addEventListener('change', () => {
-            document.getElementById('preview-wis').textContent = wisInput.value;
-        });
-        
-        chaInput.addEventListener('change', () => {
-            document.getElementById('preview-cha').textContent = chaInput.value;
-        });
-        
-        // Race select also updates class preview
-        document.querySelector('select:nth-of-type(1)').addEventListener('change', () => {
-            const race = document.querySelector('select:nth-of-type(1)').value;
-            const level = levelInput.value;
-            const className = classNameSelect.value;
-            document.getElementById('preview-class').textContent = `Nível ${level} ${className} ${race}`;
         });
     </script>
 </body>
