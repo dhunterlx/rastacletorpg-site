@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@300;400;700&display=swap');
-        
+
         :root {
             --primary: #4a044e;
             --secondary: #2d3748;
             --accent: #d53f8c;
         }
-        
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f7fafc;
@@ -22,32 +22,33 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .title-font {
             font-family: 'MedievalSharp', cursive;
         }
-        
+
         .btn-primary {
             background-color: var(--primary);
             transition: all 0.3s ease;
         }
-        
+
         .btn-primary:hover {
             background-color: #5e0b63;
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+
+        .bg-topo-continuo {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('imagens/topo.webp') no-repeat center top;
             background-size: cover;
+            background-repeat: no-repeat;
         }
-        
+
         .feature-card {
             transition: all 0.3s ease;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -55,54 +56,57 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-    <!-- Header/Navigation -->
-    <header class="hero-bg text-white">
-        <div class="container mx-auto px-4 py-6">
-            <nav class="flex justify-between items-center">
-                <div>
-                    <h1 class="title-font text-3xl md:text-4xl font-bold">Rastacleto RPG</h1>
-                    <p class="text-sm md:text-base opacity-80">Campanhas, sistemas e aventuras épicas</p>
-                </div>
-                <button class="md:hidden text-2xl" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="hidden md:flex space-x-6" id="desktop-menu">
-                    <a href="https://join.rastacletorpg.space/" class="hover:text-pink-300 transition">Jogar Agora</a>
-                    <a href="campanhas.html" class="hover:text-pink-300 transition">Campanhas</a>
-                    <a href="sistema.html" class="hover:text-pink-300 transition">Sistema</a>
-                </div>
-            </nav>
-            
-            <!-- Mobile Menu (hidden by default) -->
-            <div class="hidden py-4 md:hidden" id="mobile-menu">
-                <a href="https://join.rastacletorpg.space/" class="block py-2 hover:text-pink-300 transition">Jogar Agora</a>
-                <a href="campanhas.html" class="block py-2 hover:text-pink-300 transition">Campanhas</a>
-                <a href="sistema.html" class="block py-2 hover:text-pink-300 transition">Sistema</a>
-            </div>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-white flex-grow flex items-center py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="title-font text-4xl md:text-6xl font-bold mb-4">Bem-vindo ao Rastacleto RPG</h2>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Explore mundos fantásticos, crie personagens memoráveis e viva aventuras inesquecíveis com nosso sistema exclusivo.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="https://join.rastacletorpg.space/" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
-                    <i class="fas fa-dice-d20 mr-2"></i> Jogar Agora
-                </a>
-                <a href="campanhas.html" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
-                    <i class="fas fa-scroll mr-2"></i> Ver Campanhas
-                </a>
+    <div class="bg-topo-continuo">
+        <!-- Header/Navigation -->
+        <header class="text-white">
+            <div class="container mx-auto px-4 py-6">
+                <nav class="flex justify-between items-center">
+                    <div>
+                        <h1 class="title-font text-3xl md:text-4xl font-bold">Rastacleto RPG</h1>
+                        <p class="text-sm md:text-base opacity-80">Campanhas, sistemas e aventuras épicas!</p>
+                    </div>
+                    <button class="md:hidden text-2xl" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="hidden md:flex space-x-6" id="desktop-menu">
+                        <a href="https://join.rastacletorpg.space/" class="hover:text-pink-300 transition">Jogar Agora</a>
+                        <a href="campanhas/campanhas.html" class="hover:text-pink-300 transition">Campanhas</a>
+                        <a href="sistema.html" class="hover:text-pink-300 transition">Sistema</a>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu (hidden by default) -->
+                <div class="hidden py-4 md:hidden" id="mobile-menu">
+                    <a href="https://join.rastacletorpg.space/" class="block py-2 hover:text-pink-300 transition">Jogar Agora</a>
+                    <a href="campanhas/campanhas.html" class="block py-2 hover:text-pink-300 transition">Campanhas</a>
+                    <a href="sistema.html" class="block py-2 hover:text-pink-300 transition">Sistema</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="text-white flex-grow flex items-center py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="title-font text-4xl md:text-6xl font-bold mb-4">Bem-vindo ao Rastacleto RPG</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Explore mundos fantásticos, crie personagens memoráveis e viva aventuras inesquecíveis com nosso sistema exclusivo.</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="https://join.rastacletorpg.space/" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
+                        <i class="fas fa-dice-d20 mr-2"></i> Jogar Agora
+                    </a>
+                    <a href="campanhas/campanhas.html" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center justify-center">
+                        <i class="fas fa-scroll mr-2"></i> Ver Campanhas
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Features Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="title-font text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Descubra o Rastacleto RPG</h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
@@ -113,7 +117,7 @@
                     <p class="text-gray-600 mb-4">Entre em nossa comunidade e comece sua jornada imediatamente. Sessões regulares com mestres experientes.</p>
                     <a href="https://www.rastacletorpg.space/join" class="inline-block bg-purple-100 text-purple-700 font-medium py-2 px-6 rounded-full hover:bg-purple-200 transition">Participar</a>
                 </div>
-                
+
                 <!-- Feature 2 -->
                 <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
                     <div class="text-5xl text-red-600 mb-4">
@@ -121,9 +125,9 @@
                     </div>
                     <h3 class="title-font text-2xl font-semibold mb-3">Campanhas</h3>
                     <p class="text-gray-600 mb-4">Junte-se à emocionante campanha "Duelo de Dragões" ou aguarde nossas próximas aventuras épicas.</p>
-                    <a href="campanhas.html" class="inline-block bg-red-100 text-red-600 font-medium py-2 px-6 rounded-full hover:bg-red-200 transition">Explorar</a>
+                    <a href="campanhas/campanhas.html" class="inline-block bg-red-100 text-red-600 font-medium py-2 px-6 rounded-full hover:bg-red-200 transition">Explorar</a>
                 </div>
-                
+
                 <!-- Feature 3 -->
                 <div class="feature-card bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
                     <div class="text-5xl text-blue-600 mb-4">
@@ -178,7 +182,7 @@
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
-            
+
             // Change icon
             const icon = this.querySelector('i');
             if (menu.classList.contains('hidden')) {
@@ -189,12 +193,12 @@
                 icon.classList.add('fa-times');
             }
         });
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
